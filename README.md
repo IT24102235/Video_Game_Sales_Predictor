@@ -9,7 +9,6 @@
   <img alt="Project banner" src="https://img.shields.io/badge/Python-3.10%2B-informational" />
   <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-Pipeline-blue" />
   <img alt="VS Code" src="https://img.shields.io/badge/Editor-VS%20Code-blueviolet" />
-  <img alt="License" src="https://img.shields.io/badge/License-MIT-success" />
 </p>
 
 ---
@@ -25,24 +24,34 @@
 
 ## 🗂️ Project Structure
 ```
-video-game-sales-predictor/
-├─ data/
-│  ├─ raw/          # put original CSVs here (ignored by Git)
-│  └─ processed/    # cleaned/feature files (ignored by Git)
-├─ notebooks/
-│  └─ 01_eda.ipynb  # quick EDA starter (open in VS Code + Jupyter)
-├─ reports/
-│  └─ figures/      # images for README/report
-├─ src/
-│  ├─ data.py         # loading + column standardization helpers
-│  ├─ preprocess.py   # missing values, encoding, scaling, outliers
-│  └─ train.py        # baseline model + k-fold CV
-├─ .gitignore
+video-game-sales/
+├─ README.md
 ├─ requirements.txt
-└─ README.md
+├─ .gitignore
+├─ .vscode/
+│  └─ settings.json                  # Interpreter & Jupyter defaults
+├─ data/
+│  ├─ raw/                           # 3 CSVs  (untracked)
+│  └─ processed/                     # Output from cleaning 
+├─ notebooks/                        # live demo notebook
+├─ src/
+│  ├─ __init__.py
+│  ├─ data_loading.py                # Load + unify schemas (main + alternatives)
+│  ├─ preprocessing.py               # Cleaning + feature engineering + pipeline
+│  └─ eda.py                         # All the plots for the viva
+├─ scripts/
+│  ├─ run_cleaning.py                # CLI to generate processed CSV
+│  └─ run_eda.py                     # CLI to save figures
+├─ reports/
+│  ├─ figures/                       # EDA images saved here
+│  └─ notes/
+│     └─ ProgressReviewI_VivaNotes.md
+├─ models/                           # trained models, metrics
+└─ tests/                            # unit tests for functions
+
 ```
 
-> **Tip:** `data/` is ignored by Git to keep large files out of the repo. Share raw CSVs via Drive/OneDrive or ask each teammate to download locally.
+> **Tip:** `data/` is ignored by Git to keep large files out of the repo. Share raw CSVs via Drive/OneDrive or each user to download locally.
 
 ---
 
@@ -50,8 +59,8 @@ video-game-sales-predictor/
 
 ### 1) Clone and set up
 ```bash
-git clone https://github.com/<YOUR_ORG_OR_USER>/<YOUR_REPO>.git
-cd <YOUR_REPO>
+git clone https://github.com/IT24102235/Video_Game_Sales_Predictor.git
+cd Video_Game_Sales_Predictor
 
 # Create a virtual environment
 python -m venv .venv

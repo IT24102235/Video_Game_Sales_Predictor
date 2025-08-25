@@ -220,20 +220,23 @@ Create `.vscode/extensions.json`:
 
 ## 🗃️ Data Sources (examples to acknowledge)
 - Kaggle “Video Game Sales” variants (`vgsales.csv`, `Video_Games_Sales_as_at_22_Dec_2016.csv`)
-- VGChartz‑style exports (e.g., `vgchartz-2024.csv`)
+- VGChartz‑style exports (`vgchartz-2024.csv`)
 
-> Always check licenses/terms and cite appropriately in your report.
 
 ---
 
 ## 🧑‍💻 Maintainers
 - **Senuja Thisum** (maintainer) — @senujathisumekanayake  
-- Add your teammates here.
+- **Nimesh Gunathilake**
+- **Okindu Abeyawickrama**
+- **Moulana**
+- **Imalka Nishshanka**
+- **Supuni Warushawithanage**
 
 ---
 
 ## 📄 License
-This project is licensed under the **MIT License** — see `LICENSE` (add one if missing).
+This project does'nt have a License.
 
 ---
 

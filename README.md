@@ -51,12 +51,12 @@ Both pipelines are modular and ready for model training in Progress Review II.
 ---
 
 ## 👥 Team Contributions (Progress Review I)
-- **Senuja** → Data Cleaning & Handling Missing Values  
-- **Nimesh** → Encoding & Outlier Removal  
-- **Okindu** → Scaling & Normalization  
-- **Supuni** → Feature Engineering  
-- **Imalka** → Feature Selection  
-- **Moulana** → Dimensionality Reduction  
+- **Senuja ( IT24102235 )** → Data Cleaning & Handling Missing Values  
+- **Nimesh ( IT24102602 )** → Encoding & Outlier Removal  
+- **Okindu ( IT24102827 )** → Scaling & Normalization  
+- **Supuni ( IT24102564 )** → Feature Engineering  
+- **Imalka ( IT24102531 )** → Feature Selection  
+- **Moulana ( IT24102924 )** → Dimensionality Reduction  
 
 Each member contributed one preprocessing technique with justification, implementation, and at least one visualization, integrated into the final pipeline.
 

@@ -1,261 +1,100 @@
-
-
 # 🎮 Video Game Sales Predictor
 
 > **Predict video game sales from platform, genre, release info, scores, and more — with a clean, reproducible ML pipeline.**  
 > Built for teamwork in **VS Code** with **GitHub** and **Jupyter**.
 
-<p align="center">
-  <img alt="Project banner" src="https://img.shields.io/badge/Python-3.10%2B-informational" />
-  <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-Pipeline-blue" />
-  <img alt="VS Code" src="https://img.shields.io/badge/Editor-VS%20Code-blueviolet" />
-</p>
+---
+
+## ✨ Progress Review I (Data Preprocessing & EDA)
+
+### ✅ Work Completed
+For **Progress Review I**, we focused on **data cleaning, preprocessing, and EDA visualizations**. All steps are stored in `data/cleaned/` and `notebooks/1. Data Preprocessing/`.
+
+**1. Data Cleaning & Missing Values**  
+- Removed duplicates and inconsistent rows.
+- Handled missing values: numeric (median), categorical (mode/“Unknown”).
+- Standardized column names across datasets.
+
+**2. Encoding**  
+- **One-Hot Encoding** applied to categorical variables with limited categories (Genre, Platform).
+- **Frequency Encoding** applied to high-cardinality variables (Publisher, Developer).
+
+**3. Scaling**  
+- Standardization (Z-score) for numerical features (Critic Score, User Score, Sales).
+- Min-Max scaling tested for algorithms sensitive to ranges.
+
+**4. Feature Engineering**  
+- Created `Total_Regional_Sales` (NA+EU+JP+Other).
+- Derived `Sales_per_Review` and `Decade` features.
+- Applied log-transform to Global Sales for normalization.
+
+**5. Feature Selection**  
+- Used correlation analysis, Chi-Square tests, and RFE to reduce redundant features.
+- Identified Platform, Year, and Critic Score as most important.
+
+**6. Dimensionality Reduction**  
+- Applied PCA on One-Hot encoded dataset (reduced from ~200 features to ~30 while keeping ~90% variance).
+
+**7. Exploratory Data Analysis (EDA)**  
+- Histograms of Global Sales → highly skewed (few blockbuster titles dominate).
+- Boxplots by Genre → Action & Sports genres sell highest.
+- Correlation heatmap → Critic Score correlates more strongly with sales than User Score.
+- Sales trends → peak sales between 2008–2010.
+
+**8. Integrated Pipeline**  
+- **Pipeline A (One-Hot + Scaling + PCA)**
+- **Pipeline B (Frequency Encoding + Scaling)**
+
+Both pipelines are modular and ready for model training in Progress Review II.
 
 ---
 
-## ✨ Highlights
-- **Beginner-friendly** but **production‑style** layout (src/ + notebooks/ + data/).
-- **Reproducible pipeline** for data cleaning → feature engineering → modeling.
-- **VS Code first** (Git, Pull Requests, code review) **+ Jupyter notebooks** for EDA/demos.
-- **Team‑ready**: issue templates, branch naming, and PR checklist included below.
-- Works with classic datasets like `vgsales.csv`, `Video_Games_Sales_as_at_22_Dec_2016.csv`, and newer `vgchartz-2024.csv` (place them in `data/raw/`).
-
----
-
-## 🗂️ Project Structure
+## 🗂️ Project Structure (Updated for Review I)
 ```
 video-game-sales/
-├─ README.md
-├─ requirements.txt
-├─ .gitignore
-├─ .vscode/
-│  └─ settings.json                  # Interpreter & Jupyter defaults
 ├─ data/
-│  ├─ raw/                           # 3 CSVs  (untracked)
-│  └─ processed/                     # Output from cleaning 
-├─ notebooks/                        # live demo notebook
-├─ src/
-│  ├─ __init__.py
-│  ├─ data_loading.py                # Load + unify schemas (main + alternatives)
-│  ├─ preprocessing.py               # Cleaning + feature engineering + pipeline
-│  └─ eda.py                         # All the plots for the viva
-├─ scripts/
-│  ├─ run_cleaning.py                # CLI to generate processed CSV
-│  └─ run_eda.py                     # CLI to save figures
+│  ├─ raw/                                # Original CSVs
+│  ├─ cleaned/                            # Step-by-step cleaned datasets
+│  │   ├─ 1. Cleaning & Missing Values
+│  │   ├─ 2. Encoding
+│  │   ├─ 3. Scaling
+│  │   ├─ 4. Feature Engineering
+│  │   ├─ 5. Feature Selection
+│  │   └─ 6. Dimensionality Reduction
+│  └─ Final/                              # Integrated pipelines
+│      └─ VGChartz_2024/
+│           ├─ Final Pipeline (1-Hot).csv
+│           ├─ Final Pipeline (Frequency).csv
+│           └─ Final Pipeline (1-Hot)&DR.csv
+├─ notebooks/
+│  └─ 1. Data Preprocessing/              # Jupyter notebooks per step
 ├─ reports/
-│  ├─ figures/                       # EDA images saved here
-│  └─ notes/
-│     └─ ProgressReviewI_VivaNotes.md
-├─ models/                           # trained models, metrics
-└─ tests/                            # unit tests for functions
-
-```
-
-> **Tip:** `data/` is ignored by Git to keep large files out of the repo. Share raw CSVs via Drive/OneDrive or each user to download locally.
-
----
-
-## 🚀 Quick Start
-
-### 1) Clone and set up
-```bash
-git clone https://github.com/IT24102235/Video_Game_Sales_Predictor.git
-cd Video_Game_Sales_Predictor
-
-# Create a virtual environment
-python -m venv .venv
-# macOS/Linux
-source .venv/bin/activate
-# Windows
-# .venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### 2) Add datasets
-Place one or more CSVs into `data/raw/`:
-```
-data/raw/vgsales.csv
-data/raw/Video_Games_Sales_as_at_22_Dec_2016.csv
-data/raw/vgchartz-2024.csv
-```
-
-### 3) Run a baseline model
-```bash
-python -m src.train
-```
-This will:
-- Load and standardize columns,
-- Apply a simple preprocessing pipeline,
-- Train a baseline regressor (e.g., RandomForest) with K‑Fold CV,
-- Print metrics and save any figures to `reports/figures/`.
-
-### 4) Explore EDA in a notebook (inside VS Code)
-```bash
-jupyter notebook notebooks/01_eda.ipynb
+│  └─ Progress Review I.docx              # Viva notes/report
+└─ README.md
 ```
 
 ---
 
-## 🧹 Data Cleaning & Preprocessing Plan
-
-Use the checklist below to **assign one technique per teammate** (great for dividing work and showcasing individual contributions):
-
-- [ ] **Missing values**: numeric (median), categorical (most frequent or “Unknown”); document rationale.
-- [ ] **Type fixes**: coerce scores/years to numeric (`errors="coerce"`); handle strings like `tbd`.
-- [ ] **Column standardization**: unify names across sources (e.g., `Global_Sales` → `total_sales`).
-- [ ] **Feature engineering**: game age, handheld flag, regional share ratios, decade bins, etc.
-- [ ] **Categorical encoding**: One‑Hot (with `handle_unknown="ignore"`); consider grouping rare publishers.
-- [ ] **Outliers**: inspect with boxplots; choose to cap/winsorize or leave as-is (justify).
-- [ ] **Scaling**: Standard/MinMax for models that need it (linear/NN); keep raw for tree models.
-- [ ] **Target shaping**: try `log1p(total_sales)` if distribution is highly skewed.
-- [ ] **Train–validation split**: if predicting *future* sales, consider **time‑based** splits to avoid leakage.
-
-> Capture decisions in `README.md` and commit small, focused PRs (one technique each).
+## 📊 Next Steps (Progress Review II)
+- Train baseline models (RandomForest, Linear Regression).
+- Compare performance across One-Hot vs Frequency pipelines.
+- Evaluate log-transformed target vs raw sales.
+- Add feature importance plots and error analysis.
 
 ---
 
-## 📊 EDA Ideas (your first visuals)
-- Missing‑value heatmap, class balance for `genre`/`platform`.
-- Histograms/boxplots for `total_sales`, `critic_score`, `user_score`.
-- Correlation heatmap (numeric only).
-- Sales by **platform**, **genre**, **publisher**, **year/decade** (bar + trend).
-
-Add figures to `reports/figures/` and reference them in your report or slides.
-
----
-
-## 🤖 Modeling (baseline → better)
-
-1. **Baseline**: RandomForestRegressor (robust to mixed features, minimal tuning).  
-2. **Try next**: GradientBoosting / ExtraTrees / XGBoost (optional) and simple linear baselines on `log1p(total_sales)`.  
-3. **Evaluation**: K‑Fold RMSE/MAE + a simple hold‑out by time if the task is “predict future sales”.  
-4. **Feature importance**: permutation importance or model‑specific importances; add plots to `reports/figures/`.  
-5. **Error analysis**: where do we under/over‑predict? Certain platforms, certain years?
-
-> Keep results in a simple markdown table in your PR description for quick comparison.
-
----
-
-## 🧪 Reproducibility
-- Fix random seeds where possible (`np.random.seed`, model `random_state`).
-- Keep **data transforms inside scikit‑learn Pipelines**.
-- Log data versions and filtering steps in commit messages and PR body.
-- Avoid hand‑editing CSVs; write transformation code and save to `data/processed/`.
-
----
-
-## 🤝 Collaboration Guide (GitHub)
-
-**One‑time setup**
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your@email.com"
-```
-
-**Branching**
-- Protect `main`.
-- Use short‑lived branches: `feat/missing-values`, `feat/encoding`, `feat/outliers`, `feat/scaling`, `feat/features-genre-platform`.
-
-**Conventional commit messages (suggested)**
-```
-feat: add one-hot encoder with rare-category grouping
-fix: handle tbd values in user_score
-docs: update README with EDA plots
-refactor: move standardize_columns into data.py
-```
-
-**PR checklist**
-- [ ] Clear title & description of the change.
-- [ ] Screenshots/plots for EDA or metrics.
-- [ ] “Why” explained (dataset‑specific rationale).
-- [ ] No big files committed (data stays in `data/`).
-
----
-
-## 🧾 Assignment Deliverables Map (helpful checklist)
-
-### Progress Review I — *Data Cleaning, Preprocessing & EDA*
-- [ ] Each member: one technique with **reasoning + code + output plot**.
-- [ ] Group: a **combined preprocessing pipeline** that runs end‑to‑end.
-- [ ] Notebook/script walkthrough prepared.
-
-### Progress Review II — *Model Design & Implementation*
-- [ ] Baseline vs improved models; cross‑validation results table.
-- [ ] What worked/what didn’t; feature importance and error analysis.
-
-### Progress Review III — *Evaluation & Comparison*
-- [ ] Final model selection with metrics; fair comparison.
-- [ ] Clear visuals/tables; limitations + future work.
-
-### Final Report
-- [ ] Ethics & bias analysis (data source, representation, bias mitigation).
-- [ ] Teamwork & contribution evidence.
-- [ ] Final cleaned dataset & code rerun instructions.
+## 👥 Team Contributions
+- Each team member implemented **one preprocessing technique** (missing values, encoding, scaling, feature engineering, etc.).
+- Work integrated into a **combined pipeline** for group evaluation.
 
 ---
 
 ## 🧰 Tech Stack
-
-- **Python 3.10+**
-- **pandas**, **numpy**, **matplotlib**
-- **scikit‑learn** (pipelines, preprocessing, models)
-- **VS Code** + **Jupyter** extensions
-
-> Optional: **XGBoost**, **lightgbm**, **optuna** for tuning (add to `requirements.txt` if used).
+- **Python 3.10+**, **pandas**, **numpy**, **matplotlib**, **scikit-learn**
+- **Jupyter Notebooks** for step-by-step demos
+- **GitHub + VS Code** for version control and collaboration
 
 ---
 
-## ⚙️ VS Code: recommended extensions
-- **Python** (ms-python.python)
-- **Jupyter** (ms-toolsai.jupyter)
-- **GitHub Pull Requests** (GitHub.vscode-pull-request-github)
-- **Pylance** (ms-python.vscode-pylance)
-
-Create `.vscode/extensions.json`:
-```json
-{
-  "recommendations": [
-    "ms-python.python",
-    "ms-toolsai.jupyter",
-    "github.vscode-pull-request-github",
-    "ms-python.vscode-pylance"
-  ]
-}
-```
-
----
-
-## 🗃️ Data Sources (examples to acknowledge)
-- Kaggle “Video Game Sales” variants (`vgsales.csv`, `Video_Games_Sales_as_at_22_Dec_2016.csv`)
-- VGChartz‑style exports (`vgchartz-2024.csv`)
-
-
----
-
-## 🧑‍💻 Maintainers
-- **Senuja Thisum** (maintainer) — @senujathisumekanayake  
-- **Nimesh Gunathilake**
-- **Okindu Abeyawickrama**
-- **Moulana**
-- **Imalka Nishshanka**
-- **Supuni Warushawithanage**
-
----
-
-## 📄 License
-This project does'nt have a License.
-
----
-
-## ❓FAQ / Troubleshooting
-- **Git asks for user.name/user.email** → set once:  
-  `git config --global user.name "Your Name" && git config --global user.email "you@example.com"`
-- **Can’t push to `main`** → open a PR from your feature branch; ask for a review.
-- **Plots don’t show in VS Code** → install Jupyter extension and select the correct Python interpreter (`.venv`).
-
----
-
-> If you want, open an issue titled “🏁 Onboarding” and paste this checklist so every new teammate can tick through setup quickly.
+📌 This README is updated **only up to Progress Review I** (Data Preprocessing & EDA).
 

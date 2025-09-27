@@ -1,7 +1,7 @@
 # 🎮 Video Game Sales Predictor
 
 > **Predict video game sales from platform, genre, release info, scores, and more — with a clean, reproducible ML pipeline.**  
-> Built for teamwork in **VS Code** with **GitHub** and **Jupyter**.
+> Built collaboratively with **GitHub** and **Jupyter**.
 
 ---
 
@@ -15,11 +15,12 @@ For **Progress Review I**, we focused on **data cleaning, preprocessing, and EDA
 - Handled missing values: numeric (median), categorical (mode/“Unknown”).
 - Standardized column names across datasets.
 
-**2. Encoding**  
+**2. Encoding & Outlier Removal**  
 - **One-Hot Encoding** applied to categorical variables with limited categories (Genre, Platform).
 - **Frequency Encoding** applied to high-cardinality variables (Publisher, Developer).
+- Outlier inspection via boxplots → retained true blockbuster outliers, removed invalid sales entries.
 
-**3. Scaling**  
+**3. Scaling & Normalization**  
 - Standardization (Z-score) for numerical features (Critic Score, User Score, Sales).
 - Min-Max scaling tested for algorithms sensitive to ranges.
 
@@ -46,6 +47,18 @@ For **Progress Review I**, we focused on **data cleaning, preprocessing, and EDA
 - **Pipeline B (Frequency Encoding + Scaling)**
 
 Both pipelines are modular and ready for model training in Progress Review II.
+
+---
+
+## 👥 Team Contributions (Progress Review I)
+- **Senuja** → Data Cleaning & Handling Missing Values  
+- **Nimesh** → Encoding & Outlier Removal  
+- **Okindu** → Scaling & Normalization  
+- **Supuni** → Feature Engineering  
+- **Imalka** → Feature Selection  
+- **Moulana** → Dimensionality Reduction  
+
+Each member contributed one preprocessing technique with justification, implementation, and at least one visualization, integrated into the final pipeline.
 
 ---
 
@@ -83,16 +96,21 @@ video-game-sales/
 
 ---
 
-## 👥 Team Contributions
-- Each team member implemented **one preprocessing technique** (missing values, encoding, scaling, feature engineering, etc.).
-- Work integrated into a **combined pipeline** for group evaluation.
+## 📌 Proposal Insights
+Our proposal established the **video game sales prediction problem** as highly relevant to the **gaming industry**, which relies on accurate forecasts for:
+- **Publishers** → budget allocation and release planning.  
+- **Retailers** → inventory management.  
+- **Developers** → aligning design with demand.  
+- **Investors** → identifying profitable titles.  
+
+The chosen **VGChartz 2024 dataset** provides modern relevance with 64k+ rows, while alternative historical datasets (2016 & vgsales) allow comparative analysis and robustness checks.
 
 ---
 
 ## 🧰 Tech Stack
 - **Python 3.10+**, **pandas**, **numpy**, **matplotlib**, **scikit-learn**
 - **Jupyter Notebooks** for step-by-step demos
-- **GitHub + VS Code** for version control and collaboration
+- **GitHub** for version control and collaboration
 
 ---
 

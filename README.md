@@ -5,6 +5,17 @@
 
 ---
 
+## 📌 Proposal Insights
+Our proposal established the **video game sales prediction problem** as highly relevant to the **gaming industry**, which relies on accurate forecasts for:
+- **Publishers** → budget allocation and release planning.  
+- **Retailers** → inventory management.  
+- **Developers** → aligning design with demand.  
+- **Investors** → identifying profitable titles.  
+
+The chosen **VGChartz 2024 dataset** provides modern relevance with 64k+ rows, while alternative historical datasets (2016 & vgsales) allow comparative analysis and robustness checks.
+
+---
+
 ## ✨ Progress Review I (Data Preprocessing & EDA)
 
 ### ✅ Work Completed
@@ -65,25 +76,41 @@ Each member contributed one preprocessing technique with justification, implemen
 ## 🗂️ Project Structure (Updated for Review I)
 ```
 video-game-sales/
-├─ data/
-│  ├─ raw/                                # Original CSVs
-│  ├─ cleaned/                            # Step-by-step cleaned datasets
-│  │   ├─ 1. Cleaning & Missing Values
-│  │   ├─ 2. Encoding
-│  │   ├─ 3. Scaling
-│  │   ├─ 4. Feature Engineering
-│  │   ├─ 5. Feature Selection
-│  │   └─ 6. Dimensionality Reduction
-│  └─ Final/                              # Integrated pipelines
-│      └─ VGChartz_2024/
-│           ├─ Final Pipeline (1-Hot).csv
-│           ├─ Final Pipeline (Frequency).csv
-│           └─ Final Pipeline (1-Hot)&DR.csv
+├─ data/ 
+│  ├─ raw/                                           # Original CSVs
+│  └─ external/                                      # Step-by-step cleaned datasets
+│      ├─ 1. Cleaning & Missing Values
+│      ├─ 2. Encoding
+│      ├─ 3. Scaling
+│      ├─ 4. Feature Engineering
+│      ├─ 5. Feature Selection
+│      └─ 6. Dimensionality Reduction
+│  
 ├─ notebooks/
-│  └─ 1. Data Preprocessing/              # Jupyter notebooks per step
-├─ reports/
-│  └─ Progress Review I.docx              # Viva notes/report
-└─ README.md
+|      ├─  1. Data Preprocessing/                    # All step-by-step data preprocessing parts
+│      │    ├─ 1. Cleaning & Missing Values/
+│      │    ├─ 2. Encoding/
+│      │    ├─ 3. Feature Engineering/
+│      │    ├─ 4. Scaling/
+│      │    ├─ 5. Feature Selection/
+│      │    └─ 6. Dimensionality Reduction/
+│      ├─  2. Model Design & Implementation
+│      └─  3. Model Evaluation
+├─ results/
+|  ├─eda_visualization                               # eda visualizations of data preprocessing parts 
+│  │   ├─ 1. Cleaning & Missing Values/
+│  │   ├─ 2. Encoding/
+│  │   ├─ 3. Feature Engineering/
+│  │   ├─ 4. Scaling/
+│  │   ├─ 5. Feature Selection/
+│  │   └─ 6. Dimensionality Reduction/
+│  ├─ logs                                          
+│  │   └─ Progress Review I.docx                     # Progress I report  
+│  └─ outputs/                                       # Final CSV Files
+│      ├─ Group Pipeline (One-Hot).csv
+│      ├─ Group Pipeline (Frequency).csv
+│      └─ Group Pipeline (One-Hot) & DR.csv
+└─ README.md                       
 ```
 
 ---
@@ -93,17 +120,6 @@ video-game-sales/
 - Compare performance across One-Hot vs Frequency pipelines.
 - Evaluate log-transformed target vs raw sales.
 - Add feature importance plots and error analysis.
-
----
-
-## 📌 Proposal Insights
-Our proposal established the **video game sales prediction problem** as highly relevant to the **gaming industry**, which relies on accurate forecasts for:
-- **Publishers** → budget allocation and release planning.  
-- **Retailers** → inventory management.  
-- **Developers** → aligning design with demand.  
-- **Investors** → identifying profitable titles.  
-
-The chosen **VGChartz 2024 dataset** provides modern relevance with 64k+ rows, while alternative historical datasets (2016 & vgsales) allow comparative analysis and robustness checks.
 
 ---
 

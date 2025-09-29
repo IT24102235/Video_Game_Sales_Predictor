@@ -14,27 +14,27 @@ For **Progress Review I**, we focused on **data cleaning, preprocessing, and EDA
 - Removed duplicates and inconsistent rows.
 - Handled missing values: numeric (median), categorical (mode/“Unknown”).
 - Standardized column names across datasets.
+- Drop unwanted columns
 
 **2. Encoding & Outlier Removal**  
-- **One-Hot Encoding** applied to categorical variables with limited categories (Genre, Platform).
-- **Frequency Encoding** applied to high-cardinality variables (Publisher, Developer).
+- **One-Hot Encoding** applied to categorical variables (Publisher, Developer, Genre, Platform).
+- **Frequency Encoding** applied to categorical variables (Genre, Platform, Publisher, Developer).
 - Outlier inspection via boxplots → retained true blockbuster outliers, removed invalid sales entries.
 
 **3. Scaling & Normalization**  
-- Standardization (Z-score) for numerical features (Critic Score, User Score, Sales).
+- Standardization for numerical features (Critic Score, User Score, Sales).
 - Min-Max scaling tested for algorithms sensitive to ranges.
 
 **4. Feature Engineering**  
 - Created `Total_Regional_Sales` (NA+EU+JP+Other).
-- Derived `Sales_per_Review` and `Decade` features.
-- Applied log-transform to Global Sales for normalization.
+- Derived `is Recent` and `Decade` features.
 
 **5. Feature Selection**  
 - Used correlation analysis, Chi-Square tests, and RFE to reduce redundant features.
 - Identified Platform, Year, and Critic Score as most important.
 
 **6. Dimensionality Reduction**  
-- Applied PCA on One-Hot encoded dataset (reduced from ~200 features to ~30 while keeping ~90% variance).
+- Applied SVD on One-Hot encoded dataset (reduced from ~130 features to ~113 while keeping ~90% variance).
 
 **7. Exploratory Data Analysis (EDA)**  
 - Histograms of Global Sales → highly skewed (few blockbuster titles dominate).
@@ -43,7 +43,7 @@ For **Progress Review I**, we focused on **data cleaning, preprocessing, and EDA
 - Sales trends → peak sales between 2008–2010.
 
 **8. Integrated Pipeline**  
-- **Pipeline A (One-Hot + Scaling + PCA)**
+- **Pipeline A (One-Hot + Scaling + SVD)**
 - **Pipeline B (Frequency Encoding + Scaling)**
 
 Both pipelines are modular and ready for model training in Progress Review II.
